@@ -15,13 +15,13 @@ def mse(b0, b1, x, y, n):
 
 
 n = 10
-alpha = 0.00001
+alpha = 0.000001
 b1 = 0.1
 b0 = 0.1
 
-for i in range(3000001):
+for i in range(3001):
     pred = b0 + b1 * zp
     b1 -= alpha * (2 / n) * np.sum(((pred) - ks) * zp)
-    b0 -= alpha * (2 / n) * np.sum((pred) - ks)
-    if i % 100000 == 0:
+    b0 = np.mean(ks) - b1 * np.mean(zp)
+    if i % 100 == 0:
         print(f"Iteranion = {i}, b0 = {b0}, b1 = {b1}, mse = {mse(b0, b1, zp, ks, n)}")
