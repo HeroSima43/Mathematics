@@ -21,7 +21,7 @@ b0 = 0.1
 
 for i in range(3001):
     pred = b0 + b1 * zp
-    b1 -= alpha * (2 / n) * np.sum(((pred) - ks) * zp)
     b0 = np.mean(ks) - b1 * np.mean(zp)
+    b1 -= alpha * (2 / n) * np.sum(((pred) - ks) * zp)
     if i % 100 == 0:
         print(f"Iteranion = {i}, b0 = {b0}, b1 = {b1}, mse = {mse(b0, b1, zp, ks, n)}")
